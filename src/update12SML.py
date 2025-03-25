@@ -21,7 +21,7 @@ time_before_next_download = 120
 def wordpress_login_and_execute():
     with sync_playwright() as p:
         # Lance Firefox, Launch Firefox
-        browser = p.firefox.launch(headless=True)  # Mettre à Faux pour les tests et Vrai si appellé par une job cron(sinon bug !)
+        browser = p.firefox.launch(headless=True)  # Mettre à Faux pour les tests et Vrai si appellé par une job cron(sinon bug !) Use False for test and True for cron job
         context = browser.new_context()
         page = context.new_page()
 
