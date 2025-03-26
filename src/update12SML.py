@@ -43,12 +43,17 @@ def wordpress_login_and_execute():
         # Update les meetings, Update meetings ::
         # Ouvre la page de d'importation des réunion Open import meeting page
         page.goto("https://meetings.aa-quebec.org/wp-admin/edit.php?post_type=tsml_meeting&page=import")
+        time.sleep(30)
+        # Si vous avec des problemes de timeout, augmenter la valeur suivante.
+        # If you have timeout issues, use a bigger value. Bigger meeting list take more time..
+        page.set_default_timeout(120000)
         # Clique sur les boutons les un après les autres avec une pause entre chaque
         # Click on meeting import button with a pause between each click.
         for i in range(SOURCE_COUNT):
             print("Updating",str(i+1)," source")
             # Clique les boutons les uns après les autres. Aidé de chatgpt.
             # Click on each button one after the other. Chatgpt is good here.
+
             page.click('tr:nth-of-type(' + str(i+1) + ') input[type="submit"][value="Refresh"]')
             time.sleep(time_before_next_download)
 # Execute the automation
