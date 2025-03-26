@@ -1,13 +1,14 @@
 import json
+import os
 import time
 # Playwright doit être installé
 # You need to install playwright
 # https://playwright.dev/python/docs/intro
 from playwright.sync_api import sync_playwright
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
 # WordPress credentials and URL
 WORDPRESS_URL = "https://meetings.aa-quebec.org/wp-login.php"
-with open("credentials.json", "r") as myfile:
+with open(dir_path + "/credentials.json", "r") as myfile:
     credentials = json.load(myfile)
 if credentials['USERNAME'] == '':
     raise Exception('Please enter a username in /src/credentials.json')
