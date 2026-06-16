@@ -1,21 +1,98 @@
-Every file is commented in english and french. I suggess your read each comment before trying to run it.
-I run the code on arch-based linux cron job, but I guess it would also run fine on windows.
-You must install playwright, include your wordpress website username and password in the /src/credentials.json file.
-Depending on the number of source you have to update, you need to modify SOURCE_COUNT variable.
-setting :   browser = p.firefox.launch(headless=True)
-with headless=False
-is nice to make tests, but will crash if added to a cron job.
-Please modify /cron/updatemeetings.sh to fit your installation.
+# update12SML
 
-Push request appreciated, would be nice to make it work on windows too.
+> Files are commented in both English and French — read the comments before running anything.
 
-Chaque fichier est commenté en anglais et en français. Je vous suggère de lire chaque commentaire avant d'essayer de l'exécuter.
-J'exécute le code sur un job cron linux basé sur arch, mais j'imagine qu'il fonctionnerait aussi bien sous windows.
-Vous devez installer playwright, inclure le nom d'utilisateur et le mot de passe de votre site wordpress dans le fichier /src/credentials.json.
-En fonction du nombre de sources à mettre à jour, vous devez modifier la variable SOURCE_COUNT.
-setting : browser = p.firefox.launch(headless=True)
-avec headless=False
-est utile pour faire des tests, mais va planter si elle est ajoutée à un job cron.
-Veuillez modifier /cron/updatemeetings.sh pour l'adapter à votre installation.
+---
 
-La demande de push est appréciée, ce serait bien que ça fonctionne aussi sous Windows.
+## Requirements
+
+- Arch-based Linux (cron job)
+- The error notification system is **Linux only**
+- Windows adaptation would require additional work
+
+## Setup
+
+**1. Virtual environment**
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+**2. Playwright** *(manual install required)*
+```bash
+pip install playwright
+playwright install
+```
+
+**3. Credentials**
+
+Add your WordPress username and password to `/src/credentials.json`.
+
+**4. Configuration**
+
+In `src/update12SML.py`, set:
+- `WORDPRESS_URL`
+- `MEETING_IMPORT_PAGE_URL`
+- `SOURCE_COUNT` — adjust to match the number of sources you need to update
+
+**5. Cron job**
+
+Edit the last line of `/cron/updatemeetings.sh` to match your setup, then configure your cron task to use that file.
+
+---
+
+## Contributing
+
+Pull requests are appreciated — making this work on Windows would be a great addition.
+
+---
+---
+
+# update12SML
+
+> Les fichiers sont commentés en anglais et en français — lisez les commentaires avant d'exécuter quoi que ce soit.
+
+---
+
+## Prérequis
+
+- Linux basé sur Arch (tâche cron)
+- Le système de notifications d'erreurs est **Linux uniquement**
+- Une adaptation pour Windows nécessiterait des modifications supplémentaires
+
+## Installation
+
+**1. Environnement virtuel**
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+**2. Playwright** *(installation manuelle requise)*
+```bash
+pip install playwright
+playwright install
+```
+
+**3. Identifiants**
+
+Ajoutez votre nom d'utilisateur et mot de passe WordPress dans `/src/credentials.json`.
+
+**4. Configuration**
+
+Dans `src/update12SML.py`, définissez :
+- `WORDPRESS_URL`
+- `MEETING_IMPORT_PAGE_URL`
+- `SOURCE_COUNT` — à ajuster selon le nombre de sources à mettre à jour
+
+**5. Tâche cron**
+
+Modifiez la dernière ligne de `/cron/updatemeetings.sh` selon votre configuration, puis configurez votre tâche cron pour utiliser ce fichier.
+
+---
+
+## Contribuer
+
+Les pull requests sont les bienvenues — adapter le projet pour Windows serait une excellente contribution.
